@@ -39,10 +39,10 @@ const Textbox = (props) => {
 
   const handleMouseMove = (e) => {
     if (isDragging) {
-      const minH = 12.5*window.innerHeight/100
-      const minW = 12.8*window.innerWidth/100
+      const minH = 15.5*window.innerHeight/100
+      const minW = 13.7*window.innerWidth/100
       const maxH = 84.5*window.innerHeight/100
-      const maxW = 86*window.innerWidth/100
+      const maxW = 86.3*window.innerWidth/100
       let newX = e.clientX - startPos.current.x;
       let newY = e.clientY - startPos.current.y;
       if(newX-100 < minW || newX+100 > maxW){
@@ -111,16 +111,18 @@ const Textbox = (props) => {
 
   useEffect(() => {
     if(count === 0){
-      setTimeout(() => {
-        if(textRef && textRef.current){
-          textRef.current.style.transition = "top 1s, left 1s";
-          textRef.current.style.top = props.obj.top
-          textRef.current.style.left = props.obj.left
-          setCount(count+1)
-        }
-        
-        // textRef.current.style.transition = "none";
-      },500)
+      if(textRef && textRef.current){
+          textRef.current.style.top = window.innerHeight/2
+          textRef.current.style.left = window.innerWidth/2
+        setTimeout(() => {
+            textRef.current.style.transition = "top 1s, left 1s";
+            textRef.current.style.top = props.obj.top
+            textRef.current.style.left = props.obj.left
+            setCount(count+1)
+          // textRef.current.style.transition = "none";
+        },500)
+      }
+      
     }
     if(count === 1){
       textRef.current.style.transition = "none";
@@ -138,7 +140,7 @@ const Textbox = (props) => {
 
 
   return (
-    <div className='note border-rounded card m-2'  id={`textBox${props.index}`} style={{ position: 'absolute', width: "200px"}} ref={textRef} onDoubleClick={handleDoubleClick}>
+    <div className='note border-rounded card'  id={`textBox${props.index}`} style={{ position: 'absolute', width: "200px",top:object.top,left : object.left}} ref={textRef} onDoubleClick={handleDoubleClick}>
       <div className='header d-flex'
            style={{ height: "30px" }}
            onMouseDown={handleMouseDown}>
