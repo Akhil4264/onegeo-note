@@ -1,0 +1,8 @@
+.textarea {
+    height: 75vh; /* Fixed height for smaller screens */
+    width: 75%; /* Fixed width for smaller screens */
+    border: solid black 1px;
+    border-radius: 5px;
+    overflow: none;
+}
+
